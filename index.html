@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CineScope — Movies & Series</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Sticky Glass Navbar -->
+  <header class="navbar">
+    <div class="nav-inner">
+      <div class="brand" id="brandHomeBtn" role="button" tabindex="0">
+        <div class="brand-logo">C</div>
+        <h1>Cine<span>Scope</span></h1>
+      </div>
+
+      <nav class="nav-actions" aria-label="Primary navigation">
+        <button id="homeNavBtn" class="nav-btn active" type="button">Home</button>
+        <button id="watchlistNavBtn" class="nav-btn" type="button">
+          Watchlist <span id="watchlistBadge" class="badge">0</span>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- Hero Section (Visible on Home) -->
+    <section id="heroSection" class="hero-section">
+      <div class="hero-overlay">
+        <span class="hero-badge">Featured Catalog</span>
+        <h2>Find Movies &amp; Series Worth Watching.</h2>
+        <p>Search any title, explore IMDb ratings and cast details, and save your favorites to your personal watchlist.</p>
+
+        <form id="searchForm" class="search-form" autocomplete="off">
+          <input
+            type="text"
+            id="searchInput"
+            placeholder="Search Interstellar, Batman, Avengers, Breaking Bad..."
+            aria-label="Search movies"
+          />
+          <button type="submit" id="searchBtn">Search</button>
+        </form>
+
+        <div class="category-strip" id="categoryStrip">
+          <button type="button" class="cat-chip active" data-query="Avengers">Trending</button>
+          <button type="button" class="cat-chip" data-query="Batman">Batman</button>
+          <button type="button" class="cat-chip" data-query="Spider-Man">Spider-Man</button>
+          <button type="button" class="cat-chip" data-query="Harry Potter">Fantasy</button>
+          <button type="button" class="cat-chip" data-query="Star Wars">Sci-Fi</button>
+          <button type="button" class="cat-chip" data-query="Mission">Action</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Movie Feed Section (Directly Below Hero) -->
+    <section class="catalog-section">
+      <div class="catalog-header">
+        <div>
+          <h3 id="sectionHeading">Trending Now</h3>
+          <span id="resultsCount" class="results-count">Loading catalog...</span>
+        </div>
+
+        <div class="filter-pills" role="group" aria-label="Filter by type">
+          <button type="button" class="filter-btn active" data-type="all">All</button>
+          <button type="button" class="filter-btn" data-type="movie">Movies</button>
+          <button type="button" class="filter-btn" data-type="series">Series</button>
+        </div>
+      </div>
+
+      <!-- Loading State -->
+      <div id="loadingState" class="state-box hidden">
+        <div class="spinner"></div>
+        <h4>Loading titles...</h4>
+        <p>Fetching live data from OMDb.</p>
+      </div>
+
+      <!-- Error State -->
+      <div id="errorState" class="state-box error-box hidden">
+        <h4>Unable to load movies</h4>
+        <p id="errorMessage">Something went wrong. Please try again.</p>
+      </div>
+
+      <!-- Empty State -->
+      <div id="emptyState" class="state-box hidden">
+        <h4 id="emptyTitle">No titles found</h4>
+        <p id="emptyDesc">Try searching for another movie or switch your filter.</p>
+      </div>
+
+      <!-- Movies Grid -->
+      <div id="moviesGrid" class="movies-grid" aria-live="polite"></div>
+    </section>
+  </main>
+
+  <!-- Movie Details Modal -->
+  <div id="movieModal" class="modal-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-card">
+      <button id="closeModalBtn" class="modal-close" type="button" aria-label="Close modal">&times;</button>
+      <div id="modalBody" class="modal-body"></div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
